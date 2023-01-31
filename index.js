@@ -44,3 +44,25 @@ const firstTask = () => {
 };
 
 firstTask();
+
+//!TASK 2
+
+function secondTask() {
+  let symInput = prompt("Enter characters");
+  if (symInput.length < 1 || symInput.length > 3 || symInput.trim() === "") {
+    console.log("Incorrect input!");
+    secondTask();
+    return;
+  }
+
+  const numInput = Number(prompt("Enter a positive number"));
+  if (!Number.isInteger(numInput) || numInput <= 1 || numInput >= 10) {
+    console.log("Incorrect input!");
+    secondTask();
+    return;
+  }
+  symInput += " ";
+  console.log(`${symInput.repeat(numInput)}\n`.repeat(numInput).trim());
+}
+
+secondTask();
