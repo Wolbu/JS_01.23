@@ -40,6 +40,7 @@ const firstTask = () => {
   } else {
     console.log("Invalid input");
     firstTask();
+    return;
   }
 };
 
