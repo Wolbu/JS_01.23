@@ -41,3 +41,36 @@ function selectFromInterval(array, a, b) {
 
   return array.filter((val) => val >= intervalStart && val <= intervalEnd);
 }
+
+//!TASK 3
+
+function createIterable(from, to) {
+  if (
+    !from ||
+    !to ||
+    typeof from !== "number" ||
+    typeof to !== "number" ||
+    to <= from
+  ) {
+    throw new Error();
+  }
+  return {
+    [Symbol.iterator]() {
+      let current = from;
+      return {
+        next() {
+          if (current <= to) {
+            return {
+              value: current++,
+              done: false,
+            };
+          } else {
+            return {
+              done: true,
+            };
+          }
+        },
+      };
+    },
+  };
+}
