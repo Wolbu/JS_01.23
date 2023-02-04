@@ -22,3 +22,22 @@ function makeDeepCopy(obj) {
 
   return copy;
 }
+
+//!TASK 2
+
+function selectFromInterval(array, a, b) {
+  if (
+    !Array.isArray(array) ||
+    array.length === 0 ||
+    array.some(isNaN) ||
+    isNaN(a) ||
+    isNaN(b)
+  ) {
+    throw new Error();
+  }
+
+  let intervalStart = Math.min(a, b);
+  let intervalEnd = Math.max(a, b);
+
+  return array.filter((val) => val >= intervalStart && val <= intervalEnd);
+}
