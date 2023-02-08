@@ -10,3 +10,13 @@ Array.prototype.customFilter = function (callback, thisArg) {
   }
   return result;
 };
+
+//! Task 2
+
+function createDebounceFunction(callback, delay) {
+  let timerId;
+  return function () {
+    clearTimeout(timerId);
+    timerId = setTimeout(callback, delay);
+  };
+}
