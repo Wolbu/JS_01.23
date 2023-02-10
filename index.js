@@ -56,3 +56,48 @@ class Calculator {
     return this._x / this._y;
   }
 }
+
+//! Task 3
+
+class RickAndMorty {
+  constructor() {
+    this.API_URL = "https://rickandmortyapi.com/api/";
+  }
+
+  async get(url) {
+    const response = await fetch(url);
+    if (!response.ok) {
+      return null;
+    }
+    return await response.json();
+  }
+
+  getCharacter(id) {
+    return new Promise((resolve, reject) => {
+      if (typeof id !== "number") {
+        reject(new Error());
+      }
+      this.get(`${this.API_URL}character/${id}`)
+        .then((character) => {
+          if (!character) {
+            resolve(null);
+          }
+          resolve(character);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
+  async getEpisode(id) {
+    if (typeof id !== "number") {
+      throw new Error();
+    }
+    const episode = await this.get(`${this.API_URL}episode/${id}`);
+    if (!episode) {
+      return null;
+    }
+    return episode;
+  }
+}
