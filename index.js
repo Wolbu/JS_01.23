@@ -233,12 +233,26 @@ class Car {
     }
   }
 
-  // Methods
   start() {
     if (this.#isStarted) {
       throw new Error("Car has already started");
-    } else {
-      this.#isStarted = true;
+    }
+    this.#isStarted = true;
+  }
+
+  shutDownEngine() {
+    if (!this.#isStarted) {
+      throw new Error();
+    }
+    this.#isStarted = false;
+  }
+
+  fillUpGasTank(fuelAmount) {
+    if (typeof fuelAmount !== "number" || fuelAmount <= 0) {
+      throw new Error();
+    }
+    if (this.#currentFuelVolume + fuelAmount > this.#maxFuelVolume) {
+      throw new Error();
     }
   }
 }
