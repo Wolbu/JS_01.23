@@ -247,12 +247,16 @@ class Car {
     this.#isStarted = false;
   }
 
-  fillUpGasTank(fuelAmount) {
-    if (typeof fuelAmount !== "number" || fuelAmount <= 0) {
-      throw new Error();
+  fillUpGasTank(amount) {
+    if (typeof amount !== "number" || amount <= 0) {
+      throw new Error("Invalid fuel amount");
     }
-    if (this.#currentFuelVolume + fuelAmount > this.#maxFuelVolume) {
-      throw new Error();
+    if (this.currentFuelVolume + amount > this.maxFuelVolume) {
+      throw new Error("Too much fuel");
     }
+    if (this.isStarted) {
+      throw new Error("You have to shut down your car first");
+    }
+    this.currentFuelVolume += amount;
   }
 }
